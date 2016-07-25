@@ -1,0 +1,13 @@
+<div class="cfg-sites">
+   <div>Site</div>
+
+   <div>
+      <div class="site" ng-repeat="server in servers | orderBy:'server'">
+         <div ng-click="grabConfig(server);">{{server.server}} {{ server.link}}</div>
+      </div>
+   </div>
+
+
+   <select ng-model="selected" ng-options="f.name for f in friends | orderBy:'server' track by f.id"></select>
+
+</div>

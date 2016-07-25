@@ -1,0 +1,35 @@
+{
+  "name": "Config Tester",
+  "authors": [
+    "Michal Hotovec <michal.hotovec@gmail.com>"
+  ],
+  "description": "Config tester",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "htdoc/components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.8",
+    "angular-resource": "~1.4.8",
+    "foundation-sites": "~6.2.1",
+    "requirejs": "~2.1.22",
+    "requirejs-plugins": "~1.0.3",
+    "text": "requirejs-text#~2.0.14",
+    "domReady": "requirejs-domready#~2.0.1",
+    "json-formatter": "^0.6.0",
+    "angucomplete-alt": "^2.4.1",
+    "angular-object-diff": "^1.0.3"
+  },
+  "devDependencies": {
+    "foundation-apps": "^1.2.0",
+    "font-awesome": "^4.6.1"
+  }
+}

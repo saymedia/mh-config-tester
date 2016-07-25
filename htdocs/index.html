@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <style>[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+        display: none !important;
+    }</style>
+
+    <!--<base href="/admin/">-->
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>Test</title>
+    <link rel="stylesheet" href="/components/foundation-sites/dist/foundation-flex.css">
+    <link rel="stylesheet" href="/components/json-formatter/dist/json-formatter.css">
+    <link rel="stylesheet" href="/components/angucomplete-alt/angucomplete-alt.css">
+    <link rel="stylesheet" href="/components/angular-object-diff/dist/angular-object-diff.css">
+
+    <style>
+        .row {
+            max-width: none;
+        }
+
+        .serchbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 110px;
+            border-bottom: 1px solid black;
+            background-color: white;
+        }
+
+        .offset {
+            margin-top: 130px;
+        }
+
+        .prop {
+            font-size: 12px;
+        }
+
+        .site {
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .default-value {
+            color: #3c3c3c;
+            font-weight: 600;
+        }
+
+        .is-notdefined {
+            color: #cccccc;
+        }
+
+        .button.is-active {
+            font-weight: 800;
+            text-decoration: underline;
+        }
+
+        .highlight {
+            color: red;
+        }
+
+        .diff-view {
+            background-color: white;
+            position: fixed;
+            right: 0;
+            top: 110px;
+            width: 33%;
+            bottom: 0;
+            border: 1px solid black;
+            z-index: 100;
+
+            display: none;
+            overflow: hidden;
+
+            font-size: 12px;
+        }
+
+        .diff-container {
+            overflow: auto;
+            height: 100%;
+        }
+
+        .diff-close {
+            position: absolute;
+            background-color: black;
+            color: white;
+            padding: 10px;
+            right: 10px;
+            top: 10px;
+            cursor: pointer;
+        }
+
+
+        .diff-view.is-opened {
+            display: block;
+        }
+
+        .microbutton {
+            cursor: pointer;
+            border: 1px solid black;
+            display: inline-block;
+            text-align: center;
+            padding: 3px;
+        }
+
+    </style>
+
+
+</head>
+
+<body ng-cloak>
+
+<div ng-controller="cfgBaseCtrl">
+
+
+    <div class="serchbar">
+
+        <div class="row">
+            <div class="column small-4">
+                <div class="button-group small">
+                    <a class="button light" ng-click="switchDataset('qa');" ng-class="{'is-active': dataSet === 'qa'}">QA</a>
+                    <a class="button light" ng-click="switchDataset('prod');" ng-class="{'is-active': dataSet === 'prod'}">Prod</a>
+                </div>
+
+                <!--<input type="text" placeholder="your ip" ng-model="previewIp">-->
+
+            </div>
+
+            <div class="column small-2">
+                <label>Prop (A):
+                    <div angucomplete-alt id="propA" placeholder="Search props" maxlength="50" pause="100" selected-object="searchedStylePropA" local-data="sProps" search-fields="js" title-field="js" minlength="1" input-class="form-control form-control-small" match-class="highlight"></div>
+                       <!--<select ng-options="key for (key , value) in styleProps track by key" ng-model="searchedStylePropA"></select>-->
+                    <span class="default-value">{{ showDefault(searchedStylePropA.originalObject.js) }}</span>
+                </label>
+            </div>
+            <div class="column small-2">
+                <label>Prop (B):
+                    <div angucomplete-alt id="propB" placeholder="Search props" maxlength="50" pause="100" selected-object="searchedStylePropB" local-data="sProps" search-fields="js" title-field="js" minlength="1" input-class="form-control form-control-small" match-class="highlight"></div>
+                       <!--<select ng-options="key for (key , value) in styleProps track by key" ng-model="searchedStylePropB"></select>-->
+
+                       <!--<input type="text" ng-model="searchedStylePropB">-->
+                    <span class="default-value">{{ showDefault(searchedStylePropB.originalObject.js) }}</span>
+                </label>
+            </div>
+            <div class="column small-2">
+                <label>Prop (C):
+                    <div angucomplete-alt id="propC" placeholder="Search props" maxlength="50" pause="100" selected-object="searchedStylePropC" local-data="sProps" search-fields="js" title-field="js" minlength="1" input-class="form-control form-control-small" match-class="highlight"></div>
+                       <!--<select ng-options="key for (key , value) in styleProps track by key" ng-model="searchedStylePropC"></select>-->
+                       <!--<input type="text" ng-model="searchedStylePropC">-->
+                    <span class="default-value">{{ showDefault(searchedStylePropC.originalObject.js) }}</span>
+                </label>
+            </div>
+            <div class="column small-2">
+                <label>Prop (D):
+                    <div angucomplete-alt id="propD" placeholder="Search props" maxlength="50" pause="100" selected-object="searchedStylePropD" local-data="sProps" search-fields="js" title-field="js" minlength="1" input-class="form-control form-control-small" match-class="highlight"></div>
+                       <!--<select ng-options="key for (key , value) in styleProps track by key" ng-model="searchedStylePropD"></select>-->
+                       <!--<input type="text" ng-model="searchedStylePropD">-->
+                    <span class="default-value">{{ showDefault(searchedStylePropD.originalObject.js) }}</span>
+                </label>
+            </div>
+
+        </div>
+
+
+    </div>
+    <div class="offset">
+        <div class="row">
+            <div class="column">
+
+
+            </div>
+
+        </div>
+
+
+        <div class="row">
+            <div class="column small-12">
+                <div ng-repeat="site in sites" class="row site">
+                    <div class="column small-4" ng-click="logSite(site)">
+                        <div class="row">
+                            <div class="column shrink">
+                                <span ng-if="site.configData.isCanvasSite">CAN</span>
+                                <span ng-if="!site.configData.isCanvasSite">LEG</span>
+                            </div>
+
+                            <div class="column shrink">
+                                <div class="microbutton" ng-click="openDiff(site.siteHandle)">D</div>
+
+                            </div>
+                            <!--<div class="column small-1">-->
+                                <!--[<a href="http://{{site.siteHandle}}.{{previewIp}}.xip.io:9000" target="_blank">DEV</a>]-->
+                            <!--</div>-->
+
+                            <div class="column"><strong>{{site.siteHandle}}</strong></div>
+                        </div>
+
+
+                    </div>
+                    <!--<div class="column small-1" ng-click="logSite(site)">-->
+                    <!--<a href="{{site.configData.siteUrl}}" target="_blank">QA</a></div>-->
+                    <!--<div class="column small-1" ng-click="logSite(site)">-->
+                    <!--<a href="http://tempest-es.qa.saymedia.com/tempest-published-{{site.siteHandle}}-live/ContentSiteConfig/site-config" target="_blank">CQA</a>-->
+                    <!--</div>-->
+                    <div class="column small-2 prop" ng-class="{'is-notdefined': !isDefined(site, searchedStylePropA.originalObject.js)}">{{ searchedPropValue(site, searchedStylePropA.originalObject.js) }}</div>
+                    <div class="column small-2 prop" ng-class="{'is-notdefined': !isDefined(site, searchedStylePropB.originalObject.js)}">{{ searchedPropValue(site, searchedStylePropB.originalObject.js) }}</div>
+                    <div class="column small-2 prop" ng-class="{'is-notdefined': !isDefined(site, searchedStylePropC.originalObject.js)}">{{ searchedPropValue(site, searchedStylePropC.originalObject.js) }}</div>
+                    <div class="column small-2 prop" ng-class="{'is-notdefined': !isDefined(site, searchedStylePropD.originalObject.js)}">{{ searchedPropValue(site, searchedStylePropD.originalObject.js) }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--<div class="configs">-->
+    <!--<div class="configs-pane">-->
+    <!--<div class="row">-->
+    <!--<div class="column">-->
+    <!--Site: {{confSiteHandle}}-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<div class="row">-->
+    <!--<div class="column small-6">-->
+    <!--<div>QA</div>-->
+    <!--<json-formatter json="confQa" open="2"></json-formatter>-->
+    <!--</div>-->
+    <!--<div class="column small-6">-->
+    <!--<div>Prod</div>-->
+    <!--<json-formatter json="confProd" open="2"></json-formatter>-->
+    <!--</div>-->
+    <!--</div>-->
+
+    <!--</div>-->
+    <!--</div>-->
+
+    <div class="diff-view" ng-class="{'is-opened': diffViewEnabled}">
+        <div class="diff-container">
+            <div class="diff-close" ng-click="closeDiff()">X</div>
+            <div class="row">
+                <div class="column">
+                    <pre ng-bind-html="diffValue"></pre>
+                    <!--<pre ng-bind-html="diffValueChanges"></pre>-->
+                    <!--<pre ng-bind-html="diffObjectAJsonView"></pre>-->
+                    <!--<pre ng-bind-html="diffObjectBJsonView"></pre>-->
+                    <!---->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<script src="/components/jquery/dist/jquery.js"></script>
+<script src="/components/angular/angular.js"></script>
+<script src="/components/json-formatter/dist/json-formatter.js"></script>
+<script src="/components/angucomplete-alt/angucomplete-alt.js"></script>
+<script src="/components/angular-object-diff/dist/angular-object-diff.js"></script>
+
+<script src="/components/requirejs/require.js"></script>
+<script src="/app/requireJsPaths.js"></script>
+
+<script>
+
+
+    require(['main'], function (main) {
+    });
+</script>
+
+</body>
+</html>
