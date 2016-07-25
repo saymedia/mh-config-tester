@@ -1,8 +1,5 @@
 require('es6-promise').polyfill();
-/*!
- * gulp
- * $ npm install gulp-sass gulp-sourcemaps gulp-autoprefixer gulp-obfuscate gulp-cssnano gulp-jshint gulp-concat gulp-util gulp-uglifyjs gulp-imagemin gulp-notify gulp-rename gulp-livereload gulp-cache del --save-dev
- */
+
 
 // Load plugins
 var gulp = require('gulp'),
