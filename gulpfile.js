@@ -6,7 +6,6 @@ require('es6-promise').polyfill();
 
 // Load plugins
 var gulp = require('gulp'),
-    livereload = require('gulp-livereload'),
     del = require('del'),
     connect = require('gulp-connect'),
     rename = require('gulp-rename'),
@@ -52,9 +51,4 @@ gulp.task('html', function () {
 
 // Watch
 gulp.task('server', ['connect'], function () {
-    //gulp.watch(['./htdocs/*.html'], ['html']);
-    // Create LiveReload server
-    //livereload.listen();
-    // Watch any files in dist/, reload on change
-    //gulp.watch([DISTPATH+'/**']).on('change', livereload.changed);
 });
