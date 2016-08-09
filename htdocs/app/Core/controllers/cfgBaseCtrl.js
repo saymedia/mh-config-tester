@@ -67,7 +67,7 @@ define(
                     for (var prop in $scope.styleProps) {
                         $scope.sProps.push({js: prop, sass: prop});
                     }
-            }
+            };
 
 
             var parseSearchData = function (searchJsonData) {
@@ -103,8 +103,8 @@ define(
                         }
                     }
                 }
-                console.dir($scope.styleProps);
-
+                //console.dir($scope.styleProps);
+                //console.dir(output);
                 return output;
             };
 

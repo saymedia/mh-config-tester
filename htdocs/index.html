@@ -106,6 +106,7 @@
             padding: 3px;
         }
 
+
     </style>
 
 
@@ -119,8 +120,8 @@
     <div class="serchbar">
 
         <div class="row">
-            <div class="column small-4">
-                <div class="button-group small">
+            <div class="column small-4 ">
+                <div class="button-group small no-print">
                     <a class="button light" ng-click="switchDataset('qa');" ng-class="{'is-active': dataSet === 'qa'}">QA</a>
                     <a class="button light" ng-click="switchDataset('prod');" ng-class="{'is-active': dataSet === 'prod'}">Prod</a>
                 </div>
@@ -132,32 +133,24 @@
             <div class="column small-2">
                 <label>Prop (A):
                     <div angucomplete-alt id="propA" placeholder="Search props" maxlength="50" pause="100" selected-object="searchedStylePropA" local-data="sProps" search-fields="js" title-field="js" minlength="1" input-class="form-control form-control-small" match-class="highlight"></div>
-                       <!--<select ng-options="key for (key , value) in styleProps track by key" ng-model="searchedStylePropA"></select>-->
                     <span class="default-value">{{ showDefault(searchedStylePropA.originalObject.js) }}</span>
                 </label>
             </div>
             <div class="column small-2">
                 <label>Prop (B):
                     <div angucomplete-alt id="propB" placeholder="Search props" maxlength="50" pause="100" selected-object="searchedStylePropB" local-data="sProps" search-fields="js" title-field="js" minlength="1" input-class="form-control form-control-small" match-class="highlight"></div>
-                       <!--<select ng-options="key for (key , value) in styleProps track by key" ng-model="searchedStylePropB"></select>-->
-
-                       <!--<input type="text" ng-model="searchedStylePropB">-->
                     <span class="default-value">{{ showDefault(searchedStylePropB.originalObject.js) }}</span>
                 </label>
             </div>
-            <div class="column small-2">
+            <div class="column small-2 no-print">
                 <label>Prop (C):
                     <div angucomplete-alt id="propC" placeholder="Search props" maxlength="50" pause="100" selected-object="searchedStylePropC" local-data="sProps" search-fields="js" title-field="js" minlength="1" input-class="form-control form-control-small" match-class="highlight"></div>
-                       <!--<select ng-options="key for (key , value) in styleProps track by key" ng-model="searchedStylePropC"></select>-->
-                       <!--<input type="text" ng-model="searchedStylePropC">-->
                     <span class="default-value">{{ showDefault(searchedStylePropC.originalObject.js) }}</span>
                 </label>
             </div>
-            <div class="column small-2">
+            <div class="column small-2 no-print">
                 <label>Prop (D):
                     <div angucomplete-alt id="propD" placeholder="Search props" maxlength="50" pause="100" selected-object="searchedStylePropD" local-data="sProps" search-fields="js" title-field="js" minlength="1" input-class="form-control form-control-small" match-class="highlight"></div>
-                       <!--<select ng-options="key for (key , value) in styleProps track by key" ng-model="searchedStylePropD"></select>-->
-                       <!--<input type="text" ng-model="searchedStylePropD">-->
                     <span class="default-value">{{ showDefault(searchedStylePropD.originalObject.js) }}</span>
                 </label>
             </div>
@@ -181,20 +174,22 @@
                 <div ng-repeat="site in sites" class="row site">
                     <div class="column small-4" ng-click="logSite(site)">
                         <div class="row">
-                            <div class="column shrink">
-                                <span ng-if="site.configData.isCanvasSite">CAN</span>
-                                <span ng-if="!site.configData.isCanvasSite">LEG</span>
+                            <div class="column small-2 text-right " title="schema version">
+                                <!--<span ng-if="site.configData.isCanvasSite">CAN</span>-->
+                                <!--<span ng-if="!site.configData.isCanvasSite">LEG</span>-->
+                                {{site.configData.schemaVersion}}
                             </div>
-
-                            <div class="column shrink">
-                                <div class="microbutton" ng-click="openDiff(site.siteHandle)">D</div>
+                            <div class="column"><strong>{{site.siteHandle}}</strong></div>
+                            <div class="column shrink no-print">
+                                <div class="microbutton" ng-click="openDiff(site.siteHandle)">diff</div>
+                                <a  class="microbutton" href="http://tempest-es.{{dataSet}}.saymedia.com/tempest-published-{{site.siteHandle}}-live/ContentSiteConfig/site-config" target="_blank">cfg</a>
 
                             </div>
                             <!--<div class="column small-1">-->
                                 <!--[<a href="http://{{site.siteHandle}}.{{previewIp}}.xip.io:9000" target="_blank">DEV</a>]-->
                             <!--</div>-->
 
-                            <div class="column"><strong>{{site.siteHandle}}</strong></div>
+
                         </div>
 
 
@@ -204,10 +199,10 @@
                     <!--<div class="column small-1" ng-click="logSite(site)">-->
                     <!--<a href="http://tempest-es.qa.saymedia.com/tempest-published-{{site.siteHandle}}-live/ContentSiteConfig/site-config" target="_blank">CQA</a>-->
                     <!--</div>-->
-                    <div class="column small-2 prop" ng-class="{'is-notdefined': !isDefined(site, searchedStylePropA.originalObject.js)}">{{ searchedPropValue(site, searchedStylePropA.originalObject.js) }}</div>
-                    <div class="column small-2 prop" ng-class="{'is-notdefined': !isDefined(site, searchedStylePropB.originalObject.js)}">{{ searchedPropValue(site, searchedStylePropB.originalObject.js) }}</div>
-                    <div class="column small-2 prop" ng-class="{'is-notdefined': !isDefined(site, searchedStylePropC.originalObject.js)}">{{ searchedPropValue(site, searchedStylePropC.originalObject.js) }}</div>
-                    <div class="column small-2 prop" ng-class="{'is-notdefined': !isDefined(site, searchedStylePropD.originalObject.js)}">{{ searchedPropValue(site, searchedStylePropD.originalObject.js) }}</div>
+                    <div class="column small-4 prop" ng-class="{'is-notdefined': !isDefined(site, searchedStylePropA.originalObject.js)}">{{ searchedPropValue(site, searchedStylePropA.originalObject.js) }}</div>
+                    <div class="column small-4 prop" ng-class="{'is-notdefined': !isDefined(site, searchedStylePropB.originalObject.js)}">{{ searchedPropValue(site, searchedStylePropB.originalObject.js) }}</div>
+                    <div class="column small-2 prop no-print" ng-class="{'is-notdefined': !isDefined(site, searchedStylePropC.originalObject.js)}">{{ searchedPropValue(site, searchedStylePropC.originalObject.js) }}</div>
+                    <div class="column small-2 prop no-print" ng-class="{'is-notdefined': !isDefined(site, searchedStylePropD.originalObject.js)}">{{ searchedPropValue(site, searchedStylePropD.originalObject.js) }}</div>
                 </div>
             </div>
         </div>
